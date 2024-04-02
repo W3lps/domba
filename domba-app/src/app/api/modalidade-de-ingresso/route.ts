@@ -1,5 +1,4 @@
 import { modalidadeDeIngressoController } from "@/server/controller/ModalidadeDeIngressoController";
-import exp from "constants";
 
 export async function GET(request: Request) {
   return await modalidadeDeIngressoController.getAllModalidadesDeIngresso(
