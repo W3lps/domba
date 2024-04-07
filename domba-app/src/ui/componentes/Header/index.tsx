@@ -87,7 +87,7 @@ function Header() {
               {pages.map((page) => (
                 <div key={page} className="flex w-screen justify-center">
                   <Link
-                    href={page == "Página Principal" ? "/" : "instituicoes"}
+                    href={page == "Página Principal" ? "/" : "/instituicoes"}
                   >
                     <MenuItem
                       onClick={handleCloseNavMenu}
@@ -132,7 +132,7 @@ function Header() {
             {pages.map((page) => (
               <Link
                 key={page}
-                href={page == "Página Principal" ? "/" : "instituicoes"}
+                href={page == "Página Principal" ? "/" : "/instituicoes"}
                 style={{ textDecoration: "none", width: "200px" }}
               >
                 <Button

@@ -4,6 +4,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
+import Image from "next/image";
 
 interface InputInstituicaoCard {
   id: string;
@@ -19,19 +20,28 @@ function InstituicaoCard({
   instituicao_tipo_id,
 }: InputInstituicaoCard) {
   return (
-    <Card sx={{ width: 350, height: 300 }}>
-      <CardActionArea>
+    <Card sx={{ width: 350, height: 220 }}>
+      <CardActionArea href={`instituicoes/${nome}`} sx={{ width: 350, height: 220 }}>
         <CardMedia
           component="img"
-          height="140"
+          height="220"
+          width="330"
           image={imagem}
-          alt="green iguana"
+          alt={nome}
+          // style={{ height: "200", width: "350" }}
         />
-        <CardContent>
+        {/* <img 
+          src={imagem} 
+          alt={nome} 
+          width={350}
+          height={200}
+          // style={{ height: "200", width: "350" }}
+        /> */}
+        {/* <CardContent>
           <Typography gutterBottom variant="h5" component="div">
             {nome}
           </Typography>
-        </CardContent>
+        </CardContent> */}
       </CardActionArea>
     </Card>
   );

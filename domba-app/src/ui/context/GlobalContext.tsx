@@ -6,7 +6,7 @@ import React, { createContext, useMemo, useState } from "react";
 export const GlobalContext = createContext({} as GlobalContextData);
 
 export const GlobalProvider = ({ children }: any) => {
-  const [instituicao, setInstituicao] = useState<Instituicao[]>([]);
+  const [instituicoes, setInstituicoes] = useState<Instituicao[]>([]);
   const [instituicaoTipoSelecionado, setInstituicaoTipoSelecionado] = useState<
     string[]
   >([]);
@@ -14,16 +14,16 @@ export const GlobalProvider = ({ children }: any) => {
 
   const contextValue = useMemo(
     () => ({
-      instituicao,
-      setInstituicao,
+      instituicoes,
+      setInstituicoes,
       instituicaoTipoSelecionado,
       setInstituicaoTipoSelecionado,
       instituicaoNome, 
       setInstituicaoNome,
     }),
     [
-      instituicao,
-      setInstituicao,
+      instituicoes,
+      setInstituicoes,
       instituicaoTipoSelecionado,
       setInstituicaoTipoSelecionado,
       instituicaoNome, 

@@ -3,8 +3,8 @@ export interface GlobalContextProps {
 }
 
 export interface GlobalContextData {
-  instituicao: Instituicao[];
-  setInstituicao: (instituicao: Instituicao[]) => void;
+  instituicoes: Instituicao[];
+  setInstituicoes: (instituicao: Instituicao[]) => void;
   instituicaoTipoSelecionado: string[];
   setInstituicaoTipoSelecionado: (instituicaoTipoSelecionado: string[]) => void;
   instituicaoNome: string;
