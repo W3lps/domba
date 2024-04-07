@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/ui/componentes/Header";
 import Footer from "@/ui/componentes/Footer";
+import { GlobalProvider } from "@/ui/context/GlobalContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,12 +18,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <Header />
-        {children}
-        {/* <Footer /> */}
-      </body>
-    </html>
+    <GlobalProvider>
+      <html lang="en">
+        <body className={inter.className}>
+          <Header />
+          {children}
+          {/* <Footer /> */}
+        </body>
+      </html>
+    </GlobalProvider>
   );
 }
