@@ -16,6 +16,11 @@ async function getInstituicaoById(request: Request, id: string) {
     return new Response(JSON.stringify(response), { status: 200 });
 }
 
+async function getInstituicaoByInstituicaoTipoId(request: Request, id: string[]) {
+    const response = await instituicaoRepository.findByInstituicaoTipoId(id);
+    return new Response(JSON.stringify(response), { status: 200 });
+}
+
 async function registerInstituicao(request: Request) {
     const body = await request.json();
     const instituicao = body;
@@ -26,11 +31,13 @@ async function registerInstituicao(request: Request) {
 interface InstituicaoController {
     getAllInstituicoes: (request: Request) => Promise<Response>;
     getInstituicaoById: (request: Request, id: string) => Promise<Response>;
+    getInstituicaoByInstituicaoTipoId: (request: Request, id: string[]) => Promise<Response>;
     registerInstituicao: (request: Request) => Promise<Response>;
 }
 
 export const instituicaoController: InstituicaoController = {
     getAllInstituicoes,
     getInstituicaoById,
+    getInstituicaoByInstituicaoTipoId,
     registerInstituicao,
 };

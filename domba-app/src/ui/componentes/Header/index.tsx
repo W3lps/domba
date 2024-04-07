@@ -10,39 +10,26 @@ import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
-import { WidthFull } from "@mui/icons-material";
-import { red } from "@mui/material/colors";
 import Link from "next/link";
 
 const pages = ["Página Principal", "Instituições"];
 
 function Header() {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
-  const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget);
   };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
 
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
-
   return (
     <AppBar position="static">
-      <Container maxWidth="xl">
+      <Container>
         <Toolbar disableGutters>
           {/* <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} /> */}
           <Typography
@@ -51,7 +38,7 @@ function Header() {
             component="a"
             href="/"
             sx={{
-              mr: 2,
+              mr: 10,
               display: { xs: "none", md: "flex" },
               fontFamily: "monospace",
               fontWeight: 700,
@@ -63,7 +50,12 @@ function Header() {
             DOMBA
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "flex", md: "none" },
+            }}
+          >
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -79,12 +71,12 @@ function Header() {
               anchorEl={anchorElNav}
               anchorOrigin={{
                 vertical: "bottom",
-                horizontal: "left",
+                horizontal: "center",
               }}
               keepMounted
               transformOrigin={{
                 vertical: "top",
-                horizontal: "left",
+                horizontal: "center",
               }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
@@ -93,14 +85,22 @@ function Header() {
               }}
             >
               {pages.map((page) => (
-                <Link
-                  key={page}
-                  href={page == "Página Principal" ? "/" : "instituicoes"}
-                >
-                  <MenuItem onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center">{page}</Typography>
-                  </MenuItem>
-                </Link>
+                <div key={page} className="flex w-screen justify-center">
+                  <Link
+                    href={page == "Página Principal" ? "/" : "instituicoes"}
+                  >
+                    <MenuItem
+                      onClick={handleCloseNavMenu}
+                      style={{
+                        display: "flex",
+                        width: "90%",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <Typography textAlign="center">{page}</Typography>
+                    </MenuItem>
+                  </Link>
+                </div>
               ))}
             </Menu>
           </Box>
@@ -123,12 +123,17 @@ function Header() {
           >
             DOMBA
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", md: "flex" },
+            }}
+          >
             {pages.map((page) => (
               <Link
                 key={page}
                 href={page == "Página Principal" ? "/" : "instituicoes"}
-                style={{ textDecoration: "none", width: "200px"}}
+                style={{ textDecoration: "none", width: "200px" }}
               >
                 <Button
                   onClick={handleCloseNavMenu}
@@ -144,35 +149,12 @@ function Header() {
             ))}
           </Box>
 
-          <Box sx={{ width: "150px" }}>
-            {/* <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip> */}
-            {/* <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            > */}
-            {/* {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))} */}
-            {/* </Menu> */}
-            <Button color="inherit">Login</Button>
+          <Box
+            sx={{ display: "flex", width: "100px", justifyContent: "center" }}
+          >
+            <Button fullWidth color="inherit">
+              Login
+            </Button>
           </Box>
         </Toolbar>
       </Container>

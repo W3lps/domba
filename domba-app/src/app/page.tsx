@@ -1,5 +1,5 @@
 import React from "react";
-import Home from "@/pages/pagina_inicial/Home";
+import Home from "@/ui/componentes/Home";
 
 export default function App() {
   return (
