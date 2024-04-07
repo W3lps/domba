@@ -5,8 +5,8 @@ import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
-import { instituicaoTipoService } from "@/client/services/instituicaoTipo";
 import { GlobalContext } from "@/ui/context/GlobalContext";
+import { instituicaoTipoService } from "@/client/services/InstituicaoTipo";
 
 function InstituicaoFiltro() {
   const {
