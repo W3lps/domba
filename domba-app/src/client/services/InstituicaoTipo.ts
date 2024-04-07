@@ -1,7 +1,7 @@
 import { instituicaoTipoSchema } from "@/server/schema/instituicaoTipo";
 
 function getInstituicaoTipo(): Promise<InstituicaoTipo[]> {
-  return fetch("http://localhost:3000/api/instituicao-tipo").then(
+  return fetch("/api/instituicao-tipo").then(
     async (response) => {
       if (!response.ok) {
         throw new Error(response.statusText);

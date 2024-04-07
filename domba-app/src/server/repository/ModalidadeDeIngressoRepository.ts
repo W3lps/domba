@@ -41,6 +41,26 @@ async function findById(id: string): Promise<ModalidadeDeIngresso> {
   return modalidadeDeIngressos;
 }
 
+async function findByInstituicaoId(
+  instituicaoId: string
+): Promise<ModalidadeDeIngresso[]> {
+  const { data, error } = await supabase
+    .from("Modalidade_de_ingresso")
+    .select("*")
+    .eq("instituicao_id", instituicaoId);
+  if (error) {
+    throw error;
+  }
+
+  const parsedData = modalidadeDeIngressoSchema.array().safeParse(data);
+  if (!parsedData.success) {
+    throw new Error(parsedData.error.errors[0].message);
+  }
+
+  const modalidadeDeIngressos = parsedData.data;
+  return modalidadeDeIngressos;
+}
+
 async function save(
   modalidadeDeIngresso: ModalidadeDeIngressoCreate
 ): Promise<ModalidadeDeIngresso> {
@@ -65,6 +85,9 @@ async function save(
 interface ModalidadeDeIngressoRepository {
   findAll: () => Promise<ModalidadeDeIngresso[]>;
   findById: (id: string) => Promise<ModalidadeDeIngresso>;
+  findByInstituicaoId: (
+    instituicaoId: string
+  ) => Promise<ModalidadeDeIngresso[]>;
   save: (
     modalidadeDeIngresso: ModalidadeDeIngressoCreate
   ) => Promise<ModalidadeDeIngresso>;
@@ -73,5 +96,6 @@ interface ModalidadeDeIngressoRepository {
 export const modalidadeDeIngressoRepository: ModalidadeDeIngressoRepository = {
   findAll,
   findById,
+  findByInstituicaoId,
   save,
 };

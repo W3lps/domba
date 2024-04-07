@@ -16,6 +16,17 @@ async function getProvaById(request: Request, id: string) {
   return new Response(JSON.stringify(response), { status: 200 });
 }
 
+async function getProvaByModalidadeDeIngressoId(request: Request, id: string) {
+  if (!id) {
+    return new Response("Faltando o id da Modalidade de Ingresso.", {
+      status: 400,
+    });
+  }
+
+  const response = await provaRepository.findByModalidadeDeIngressoId(id);
+  return new Response(JSON.stringify(response), { status: 200 });
+}
+
 async function registerProva(request: Request) {
   const body = await request.json();
   const prova = body as ProvaCreate;
@@ -28,11 +39,16 @@ async function registerProva(request: Request) {
 interface ProvaController {
   getAllProvas: (request: Request) => Promise<Response>;
   getProvaById: (request: Request, id: string) => Promise<Response>;
+  getProvaByModalidadeDeIngressoId: (
+    request: Request,
+    id: string
+  ) => Promise<Response>;
   registerProva: (request: Request) => Promise<Response>;
 }
 
 export const provaController: ProvaController = {
   getAllProvas,
   getProvaById,
+  getProvaByModalidadeDeIngressoId,
   registerProva,
 };
