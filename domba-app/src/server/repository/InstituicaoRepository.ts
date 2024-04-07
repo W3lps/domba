@@ -37,6 +37,24 @@ async function findById(id: string): Promise<Instituicao> {
     return instituicao;
 }
 
+async function findByInstituicaoTipoId(instituicaoTipoId: string[]): Promise<Instituicao[]> {
+    const { data, error } = await supabase
+        .from('Instituicao')
+        .select('*')
+        .in('instituicao_tipo_id', instituicaoTipoId);
+    if (error) {
+        throw error;
+    }
+
+    const parsedData = instituicaoSchema.array().safeParse(data);
+    if (!parsedData.success) {
+        throw new Error(parsedData.error.errors[0].message);
+    }
+
+    const instituicoes = parsedData.data;
+    return instituicoes;
+}
+
 async function save(instituicao: InstituicaoCreate): Promise<Instituicao> {
     const { data, error } = await supabase
         .from('Instituicao')
@@ -59,11 +77,13 @@ async function save(instituicao: InstituicaoCreate): Promise<Instituicao> {
 interface InstituicaoRepository {
     findAll: () => Promise<Instituicao[]>;
     findById: (id: string) => Promise<Instituicao>;
+    findByInstituicaoTipoId: (instituicaoTipoId: string[]) => Promise<Instituicao[]>;
     save: (instituicao: InstituicaoCreate) => Promise<Instituicao>;
 }
 
 export const instituicaoRepository: InstituicaoRepository = {
     findAll,
     findById,
+    findByInstituicaoTipoId,
     save,
 };
