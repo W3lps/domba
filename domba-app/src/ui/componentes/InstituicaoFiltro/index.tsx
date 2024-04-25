@@ -52,16 +52,9 @@ function InstituicaoFiltro() {
               onClick={() => handleInstituicaoTipo(tipo.id)}
               variant="outlined"
               sx={{
-                bgcolor: instituicaoTipoSelecionado.includes(tipo.id)
-                  ? "primary.main"
-                  : "white",
                 color: instituicaoTipoSelecionado.includes(tipo.id)
-                  ? "white"
+                  ? "red"
                   : "primary.main",
-                "&:hover": {
-                  bgcolor: "primary.main",
-                  color: "white",
-                },
               }}
             >
               {tipo.nome}
@@ -76,17 +69,19 @@ function InstituicaoFiltro() {
             maxWidth: "100%",
           }}
         >
-          <TextField
-            id="outlined-controlled"
-            variant="filled"
-            label="Instituição"
-            value={instituicaoNome}
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-              setInstituicaoNome(event.target.value);
-            }}
-            fullWidth
-            color="primary"
-          />
+          {instituicaoTipo && (
+            <TextField
+              id="outlined-controlled"
+              variant="filled"
+              label="Instituição"
+              value={instituicaoNome}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                setInstituicaoNome(event.target.value);
+              }}
+              fullWidth
+              color="primary"
+            />
+          )}
         </Box>
       </div>
     </>

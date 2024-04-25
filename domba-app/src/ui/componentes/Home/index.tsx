@@ -19,8 +19,8 @@ function Home() {
           />
         </div>
         <p className="text-center">
-          Desenvolvido pelas docentes da Escola Estadual Dom Barreto, a
-          plataforma visa facilitar o acesso dos alunos às informações
+          Desenvolvido pelos docentes da Escola Estadual Dom Barreto, a
+          plataforma visa facilitar o acesso dos estudantes às informações
           relacionadas a vestibulares, cursos técnicos, cursinhos populares,
           eventos, entre outros.
         </p>
