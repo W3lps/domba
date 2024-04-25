@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useContext, useMemo } from "react";
-import InstituicaoCard from "@/ui/componentes/InstituicaoCard/indes";
+import InstituicaoCard from "@/ui/componentes/InstituicaoCard/index";
 import InstituicaoFiltro from "@/ui/componentes/InstituicaoFiltro";
 import Grid from "@mui/material/Grid";
 import { instituicaoService } from "@/client/services/Instituicao";
