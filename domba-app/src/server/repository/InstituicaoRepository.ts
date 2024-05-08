@@ -35,14 +35,18 @@ async function findById(id: string): Promise<Instituicao> {
   return instituicao;
 }
 
-async function findByName(nome: string): Promise<Instituicao> {
+async function findByName(nome: string): Promise<Instituicao | null> {
   const { data, error } = await supabase
     .from("Instituicao")
     .select("*")
     .eq("nome", nome)
     .single();
   if (error) {
-    throw error;
+    if (error.code !== "PGRST116") throw error;
+  }
+
+  if (!data) {
+    return null;
   }
 
   const parsedData = instituicaoSchema.safeParse(data);
@@ -93,14 +97,50 @@ async function save(instituicao: InstituicaoCreate): Promise<Instituicao> {
   return instituicaoCreated;
 }
 
+async function update(instituicao: InstituicaoUpdate): Promise<Instituicao> {
+  const currentDate = new Date();
+  currentDate.setHours(currentDate.getHours() - 3);
+  instituicao.edited_at = currentDate.toISOString();
+
+  const { data, error } = await supabase
+    .from("Instituicao")
+    .update(instituicao)
+    .eq("id", instituicao.id)
+    .select()
+    .single();
+  if (error) {
+    throw error;
+  }
+
+  const parsedData = instituicaoSchema.safeParse(data);
+  if (!parsedData.success) {
+    throw new Error(parsedData.error.errors[0].message);
+  }
+
+  const instituicaoUpdated = parsedData.data;
+  return instituicaoUpdated;
+}
+
+async function deleteByName(nome: string): Promise<void> {
+  const { error } = await supabase
+    .from("Instituicao")
+    .delete()
+    .eq("nome", nome);
+  if (error) {
+    throw error;
+  }
+}
+
 interface InstituicaoRepository {
   findAll: () => Promise<Instituicao[]>;
   findById: (id: string) => Promise<Instituicao>;
   findByInstituicaoTipoId: (
     instituicaoTipoId: string[]
   ) => Promise<Instituicao[]>;
-  findByName: (nome: string) => Promise<Instituicao>;
+  findByName: (nome: string) => Promise<Instituicao | null>;
   save: (instituicao: InstituicaoCreate) => Promise<Instituicao>;
+  update: (instituicao: InstituicaoUpdate) => Promise<Instituicao>;
+  deleteByName: (nome: string) => Promise<void>;
 }
 
 export const instituicaoRepository: InstituicaoRepository = {
@@ -109,4 +149,6 @@ export const instituicaoRepository: InstituicaoRepository = {
   findByName,
   findByInstituicaoTipoId,
   save,
+  update,
+  deleteByName,
 };

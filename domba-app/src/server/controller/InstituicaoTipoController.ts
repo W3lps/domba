@@ -1,3 +1,4 @@
+import { infraSecurity } from "../infra/security/auth";
 import { instituicaoTipoRepository } from "../repository/InstituicaoTipoRepository";
 
 async function getAllInstituicaoTipos(request: Request) {
@@ -19,6 +20,13 @@ async function getInstituicaoTipoById(request: Request, id: string) {
 async function registerInstituicaoTipo(request: Request) {
   const body = await request.json();
   const instituicaoTipoNome = body as string;
+  const token = request.headers.get("Authorization");
+
+  if (!token) {
+    return new Response("Token não encontrado.", { status: 401 });
+  }
+
+  infraSecurity.verifyToken(token);
 
   const response = await instituicaoTipoRepository.save(
     instituicaoTipoNome
