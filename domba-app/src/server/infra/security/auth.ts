@@ -10,18 +10,11 @@ function createToken(usuario: Usuario): string {
   return token;
 }
 
-function verifyToken(token: string) {
-  const decoded = jwt.verify(token, "secret");
-
-  if (!decoded) {
-    throw new Error("Token inválido.");
-  }
-
+async function verifyToken(token: string) {
   // verify if the token is valid
   jwt.verify(token, "secret", (err: any) => {
     if (err) {
-      console.log(err);
-      throw new Error("Token inválido.");
+      return new Response("Token inválido", { status: 401 });
     }
   });
 }
