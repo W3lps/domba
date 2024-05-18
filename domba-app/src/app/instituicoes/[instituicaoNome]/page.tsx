@@ -132,20 +132,33 @@ function Instituicao() {
             <h1>{instituicao?.informacao_geral}</h1>
           </div>
           <Divider />
-          <div className="flex-col text-center justify-center items-center mb-5 mt-5">
-            <Typography variant="h5" gutterBottom>
-              Modalidade de Ingresso
-            </Typography>
-            {modalidadeDeIngressoReturn}
-          </div>
-          <Divider />
-          <div className="flex-col text-center mt-5">
-            <Typography variant="h6" gutterBottom>
-              Provas
-            </Typography>
-            {provasReturn}
-          </div>
-          <Divider />
+          {modalidadeDeIngressoReturn &&
+          modalidadeDeIngressoReturn.length > 0 ? (
+            <>
+            <div className="flex-col text-center justify-center items-center mb-5 mt-5">
+              <Typography variant="h5" gutterBottom>
+                Modalidade de Ingresso
+              </Typography>
+              {modalidadeDeIngressoReturn}
+            </div>
+            <Divider />
+            </>
+          ) : (
+            <></>
+          )}
+          {provasReturn ? (
+            <>
+              <div className="flex-col text-center mt-5">
+                <Typography variant="h6" gutterBottom>
+                  Provas
+                </Typography>
+                {provasReturn}
+              </div>
+              <Divider />
+            </>
+          ) : (
+            <></>
+          )}
           <div className="flex-col justify-center items-center text-center mb-5 mt-5">
             <Typography variant="h5" gutterBottom>
               Cursos

@@ -38,6 +38,12 @@ async function registerModalidadeDeIngresso(request: Request) {
   const modalidadeDeIngresso = body as ModalidadeDeIngressoCreate;
   const token = request.headers.get("Authorization");
 
+  if (!modalidadeDeIngresso.modalidade) {
+    return new Response("Faltando o nome da Modalidade.", {
+      status: 400,
+    });
+  }
+
   if (!token) {
     return new Response("Token não encontrado.", { status: 401 });
   }
@@ -54,6 +60,12 @@ async function updateModalidadeDeIngresso(request: Request) {
   const body = await request.json();
   const modalidadeDeIngresso = body as ModalidadeDeIngressoUpdate;
   const token = request.headers.get("Authorization");
+
+  if (!modalidadeDeIngresso.modalidade) {
+    return new Response("Faltando o nome da Modalidade.", {
+      status: 400,
+    });
+  }
 
   if (!token) {
     return new Response("Token não encontrado.", { status: 401 });

@@ -21,7 +21,6 @@ import { instituicaoTipoService } from "@/client/services/InstituicaoTipo";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 import { useRouter } from "next/navigation";
-import { set } from "zod";
 
 // REFATORAR, CRIAR UM COMPONENTE PARA CADA ACCORDION
 
@@ -411,6 +410,7 @@ export default function Cadastro() {
             }
             onChange={handleChangeInstituicao}
             type="text"
+            margin="dense"
           />
           <TextField
             id="outlined-basic"
@@ -424,6 +424,7 @@ export default function Cadastro() {
                 : instituicao.informacao_geral
             }
             onChange={handleChangeInstituicao}
+            margin="dense"
           />
           <TextField
             id="outlined-basic"
@@ -437,6 +438,7 @@ export default function Cadastro() {
                 : instituicao.cidade
             }
             onChange={handleChangeInstituicao}
+            margin="dense"
           />
           <TextField
             id="outlined-basic"
@@ -450,6 +452,7 @@ export default function Cadastro() {
                 : instituicao.uf
             }
             onChange={handleChangeInstituicao}
+            margin="dense"
           />
           <TextField
             id="outlined-basic"
@@ -463,6 +466,7 @@ export default function Cadastro() {
                 : instituicao.website
             }
             onChange={handleChangeInstituicao}
+            margin="dense"
           />
           <TextField
             id="outlined-basic"
@@ -476,6 +480,7 @@ export default function Cadastro() {
                 : instituicao.imagem
             }
             onChange={handleChangeInstituicao}
+            margin="dense"
           />
           {/* <TextField
             id="outlined-basic"
@@ -501,6 +506,7 @@ export default function Cadastro() {
             label="Instituição Tipo"
             name="instituicao_tipo_id"
             onChange={handleChangeInstituicao}
+            margin="dense"
             fullWidth
           >
             {instituicaoTipoLista.map((instituicaoTipo) => (
@@ -521,6 +527,7 @@ export default function Cadastro() {
                 : instituicao.cursos
             }
             onChange={handleChangeInstituicao}
+            margin="dense"
           />
           <AccordionActions>
             {instituicaoSelecionada === "Cadastro" ? (
@@ -563,6 +570,7 @@ export default function Cadastro() {
                 : modalidade.modalidade
             }
             onChange={handleChangeModalidade}
+            margin="dense"
           />
           <TextField
             id="outlined-basic"
@@ -576,6 +584,7 @@ export default function Cadastro() {
                 : modalidade?.data_inscricao_inicio
             }
             onChange={handleChangeModalidade}
+            margin="dense"
           />
           <TextField
             id="outlined-basic"
@@ -589,6 +598,7 @@ export default function Cadastro() {
                 : modalidade?.data_inscricao_final
             }
             onChange={handleChangeModalidade}
+            margin="dense"
           />
           <TextField
             id="outlined-basic"
@@ -602,6 +612,7 @@ export default function Cadastro() {
                 : modalidade?.data_isencao
             }
             onChange={handleChangeModalidade}
+            margin="dense"
           />
           <TextField
             id="outlined-basic"
@@ -615,6 +626,7 @@ export default function Cadastro() {
                 : modalidade?.valor
             }
             onChange={handleChangeModalidade}
+            margin="dense"
           />
           <TextField
             id="outlined-basic"
@@ -628,6 +640,7 @@ export default function Cadastro() {
                 : modalidade?.link
             }
             onChange={handleChangeModalidade}
+            margin="dense"
           />
           {/* <TextField
             id="outlined-basic"
@@ -652,6 +665,7 @@ export default function Cadastro() {
             label="Instituição de ingresso"
             name="instituicao_id"
             onChange={handleChangeModalidade}
+            margin="dense"
             fullWidth
           >
             {instituicaoLista.map((instituicaoTipo) => (
@@ -693,6 +707,7 @@ export default function Cadastro() {
             variant="outlined"
             fullWidth
             onChange={handleChangeProva}
+            margin="dense"
             value={
               provaSelecionada === "Cadastro" ? novaProva.nome : prova?.nome
             }
@@ -704,6 +719,7 @@ export default function Cadastro() {
             variant="outlined"
             fullWidth
             onChange={handleChangeProva}
+            margin="dense"
             value={
               provaSelecionada === "Cadastro"
                 ? novaProva.data_prova
@@ -733,6 +749,7 @@ export default function Cadastro() {
             label="Modalidade de ingresso"
             name="modalidade_de_ingresso_id"
             onChange={handleChangeProva}
+            margin="dense"
             fullWidth
           >
             {modalidadeLista.map((modalidade) => (

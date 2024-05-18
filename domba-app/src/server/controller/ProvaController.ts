@@ -33,6 +33,10 @@ async function registerProva(request: Request) {
   const prova = body as ProvaCreate;
   const token = request.headers.get("Authorization");
 
+  if (!prova.nome) {
+    return new Response("Faltando o nome da Prova.", { status: 400 });
+  }
+
   if (!token) {
     return new Response("Token não encontrado.", { status: 401 });
   }
@@ -48,6 +52,10 @@ async function updateProva(request: Request) {
   const body = await request.json();
   const prova = body as ProvaUpdate;
   const token = request.headers.get("Authorization");
+
+  if (!prova.nome) {
+    return new Response("Faltando o nome da Prova.", { status: 400 });
+  }
 
   if (!token) {
     return new Response("Token não encontrado.", { status: 401 });
