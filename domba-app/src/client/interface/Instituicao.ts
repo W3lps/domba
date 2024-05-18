@@ -7,7 +7,7 @@ interface Instituicao {
   website: string;
   imagem: string;
   instituicao_tipo_id: string;
-  cursos: string[];
+  cursos: string;
   created_at: string;
   edited_at: string;
 }
@@ -17,4 +17,15 @@ interface InstituicaoCardProps {
   nome: string;
   imagem: string;
   instituicao_tipo_id: string;
+}
+
+interface InstituicaoCreateProps {
+  nome: string;
+  informacao_geral: string;
+  cidade: string;
+  uf: string;
+  website: string;
+  imagem: string;
+  instituicao_tipo_id: string;
+  cursos: string;
 }

@@ -9,7 +9,7 @@ export const instituicaoSchema = schema.object({
   website: schema.string(),
   imagem: schema.string(),
   instituicao_tipo_id: schema.string().uuid(),
-  cursos: schema.array(schema.string()),
+  cursos: schema.string(),
   created_at: schema.string(),
   edited_at: schema.string(),
 });

@@ -61,7 +61,7 @@ async function registerInstituicao(request: Request) {
   }
 
   const response = await instituicaoRepository.save(instituicao);
-  return new Response(JSON.stringify(response), { status: 200 });
+  return new Response(JSON.stringify(response), { status: 201 });
 }
 
 async function updateInstituicao(request: Request) {
@@ -106,7 +106,7 @@ async function deleteInstituicao(request: Request) {
     return new Response("Token não encontrado.", { status: 401 });
   }
 
-  infraSecurity.verifyToken(token);
+  await infraSecurity.verifyToken(token);
 
   const { nome } = body;
 

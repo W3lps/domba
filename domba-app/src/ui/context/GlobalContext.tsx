@@ -7,10 +7,12 @@ export const GlobalContext = createContext({} as GlobalContextData);
 
 export const GlobalProvider = ({ children }: any) => {
   const [instituicoes, setInstituicoes] = useState<Instituicao[]>([]);
-  const [instituicaoTipoSelecionado, setInstituicaoTipoSelecionado] = useState<
-    string[]
-  >([]);
+  const [instituicaoTipoSelecionado, setInstituicaoTipoSelecionado] = useState<string[]>([]);
   const [instituicaoNome, setInstituicaoNome] = useState<string>("");
+  const [token, setToken] = useState<string | null>(null);
+  const [modalidadeSelecionada, setModalidadeSelecionada] = useState<string>("Cadastro");
+  const [provaSelecionada, setProvaSelecionada] = useState<string>("Cadastro");
+  const [instituicaoSelecionada, setInstituicaoSelecionada] = useState<string>("Cadastro");
 
   const contextValue = useMemo(
     () => ({
@@ -20,6 +22,14 @@ export const GlobalProvider = ({ children }: any) => {
       setInstituicaoTipoSelecionado,
       instituicaoNome, 
       setInstituicaoNome,
+      token,
+      setToken,
+      modalidadeSelecionada,
+      setModalidadeSelecionada,
+      provaSelecionada,
+      setProvaSelecionada,
+      instituicaoSelecionada,
+      setInstituicaoSelecionada,
     }),
     [
       instituicoes,
@@ -28,6 +38,14 @@ export const GlobalProvider = ({ children }: any) => {
       setInstituicaoTipoSelecionado,
       instituicaoNome, 
       setInstituicaoNome,
+      token,
+      setToken,
+      modalidadeSelecionada,
+      setModalidadeSelecionada,
+      provaSelecionada,
+      setProvaSelecionada,
+      instituicaoSelecionada,
+      setInstituicaoSelecionada,
     ]
   );
 

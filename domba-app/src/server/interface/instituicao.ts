@@ -6,7 +6,7 @@ interface InstituicaoCreate {
   website: string;
   imagem: string;
   instituicao_tipo_id: string;
-  cursos: string[];
+  cursos: string;
 }
 
 interface InstituicaoUpdate {
@@ -18,6 +18,6 @@ interface InstituicaoUpdate {
   website: string;
   imagem: string;
   instituicao_tipo_id: string;
-  cursos: string[];
+  cursos: string;
   edited_at: string;
 }
