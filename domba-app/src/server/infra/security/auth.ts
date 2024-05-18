@@ -1,9 +1,8 @@
 import { Usuario } from "@/server/schema/Usuario";
-
-const jwt = require("jsonwebtoken");
+import jsonwebtoken from "jsonwebtoken";
 
 function createToken(usuario: Usuario): string {
-  const token = jwt.sign({ id: usuario.id, email: usuario.email }, "secret", {
+  const token = jsonwebtoken.sign({ id: usuario.id, email: usuario.email }, "secret", {
     expiresIn: "1h",
   });
 
@@ -12,7 +11,7 @@ function createToken(usuario: Usuario): string {
 
 async function verifyToken(token: string) {
   // verify if the token is valid
-  jwt.verify(token, "secret", (err: any) => {
+  jsonwebtoken.verify(token, "secret", (err: any) => {
     if (err) {
       return new Response("Token inválido", { status: 401 });
     }

@@ -15,6 +15,9 @@ import MenuItem from "@mui/material/MenuItem";
 import Link from "next/link";
 import { GlobalContext } from "@/ui/context/GlobalContext";
 
+import { jwtDecode } from "jwt-decode";
+import { useRouter } from "next/navigation";
+
 const pages = ["Página Principal", "Instituições"];
 
 function Header() {
@@ -23,8 +26,17 @@ function Header() {
 
   useEffect(() => {
     setToken(localStorage.getItem("token"));
+
     if (!token) {
       localStorage.removeItem("token");
+      return;
+    }
+  
+    const decodedToken: any = jwtDecode(token);
+    const currentTime = Date.now() / 1000;
+    if (decodedToken.exp < currentTime) {
+      // Token has expired
+      localStorage.removeItem("token"); // Remove the expired token
     }
   }, [token]);
 
