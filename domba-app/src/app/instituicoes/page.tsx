@@ -6,6 +6,8 @@ import InstituicaoFiltro from "@/ui/componentes/InstituicaoFiltro";
 import Grid from "@mui/material/Grid";
 import { instituicaoService } from "@/client/services/Instituicao";
 import { GlobalContext } from "@/ui/context/GlobalContext";
+import Button from "@mui/material/Button";
+import Link from "next/link";
 
 function Intituicoes() {
   const {
@@ -13,6 +15,10 @@ function Intituicoes() {
     setInstituicoes,
     instituicaoTipoSelecionado,
     instituicaoNome,
+    token,
+    setInstituicaoSelecionada,
+    setModalidadeSelecionada,
+    setProvaSelecionada,
   } = useContext(GlobalContext);
 
   useMemo(() => {
@@ -39,10 +45,35 @@ function Intituicoes() {
       });
   }, [instituicaoTipoSelecionado, instituicaoNome]);
 
+  const handleCadastroInstituicao = () => {
+    setInstituicaoSelecionada("Cadastro");
+    setModalidadeSelecionada("Cadastro");
+    setProvaSelecionada("Cadastro");
+  }
+
   return (
     <>
       {instituicoes ? (
         <>
+          {token ? (
+            <div className="flex sm:none h-15 justify-center mt-10 align-middle">
+              <Link href="/instituicoes/cadastro">
+                <Button
+                  variant="contained"
+                  sx={{
+                    color: "white",
+                    borderColor: "primary.main",
+                    backgroundColor: "primary.main",
+                  }}
+                  onClick={() => handleCadastroInstituicao()}
+                >
+                  CADASTRE OUTRAS INSTITUIÇÕES
+                </Button>
+              </Link>
+            </div>
+          ) : (
+            <></>
+          )}
           <InstituicaoFiltro />
           <div className="flex mt-20 justify-center items-stretch">
             <Grid

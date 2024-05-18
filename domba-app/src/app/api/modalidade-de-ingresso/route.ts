@@ -11,3 +11,15 @@ export async function POST(request: Request) {
     request
   );
 }
+
+export async function PUT(request: Request) {
+  return await modalidadeDeIngressoController.updateModalidadeDeIngresso(
+    request
+  );
+}
+
+export async function DELETE(request: Request) {
+  return await modalidadeDeIngressoController.deleteModalidadeDeIngresso(
+    request
+  );
+}

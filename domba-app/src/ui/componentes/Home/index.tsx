@@ -7,7 +7,7 @@ function Home() {
     <div className="flex-col w-screen">
       <div className="mt-10">
         <h1 className="text-2xl font-bold text-center mb-10">
-          Portal voltado aos alunos da Escola Estadual Dom Barreto.
+          Portal voltado aos estudantes da Escola Estadual Dom Barreto.
         </h1>
         <div className="mb-10">
           <Image

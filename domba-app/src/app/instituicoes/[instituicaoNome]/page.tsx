@@ -48,25 +48,25 @@ function Instituicao() {
   }, []);
 
   // Ordenação dos cursos em ordem alfabética
-  const cursosEmOrdemAlfabetica = instituicao?.cursos.sort();
+  // const cursosEmOrdemAlfabetica = instituicao?.cursos.sort();
 
   // Alteração no formato da data de yyyy-mm-dd para dd/mm/yyyy
-  const dataFormatoBrasileiro = (data: string) => {
-    const dataFormatada = data.split("-");
-    return `${dataFormatada[2]}/${dataFormatada[1]}/${dataFormatada[0]}`;
-  };
+  // const dataFormatoBrasileiro = (data: string) => {
+  //   const dataFormatada = data.split("-");
+  //   return `${dataFormatada[2]}/${dataFormatada[1]}/${dataFormatada[0]}`;
+  // };
 
   const modalidadeDeIngressoReturn = modalidadeDeIngresso?.map(
     (modalidade, index) => {
-      const dataInicioFormatada = dataFormatoBrasileiro(
-        modalidade.data_inscricao_inicio
-      );
-      const dataFinalFormatada = dataFormatoBrasileiro(
-        modalidade.data_inscricao_final
-      );
-      const dataIsencaoFormatada = dataFormatoBrasileiro(
-        modalidade.data_isencao
-      );
+      // const dataInicioFormatada = dataFormatoBrasileiro(
+      //   modalidade.data_inscricao_inicio
+      // );
+      // const dataFinalFormatada = dataFormatoBrasileiro(
+      //   modalidade.data_inscricao_final
+      // );
+      // const dataIsencaoFormatada = dataFormatoBrasileiro(
+      //   modalidade.data_isencao
+      // );
       return (
         <div key={index} className="flex-col text-center justify-center">
           <Typography variant="h6" gutterBottom>
@@ -75,11 +75,11 @@ function Instituicao() {
           <div className="flex justify-around mt-5 mb-5">
             <div>
               <p>Data de inscrição início</p>
-              <p>{dataInicioFormatada}</p>
+              <p>{modalidade.data_inscricao_inicio}</p>
             </div>
             <div>
               <p>Data de inscrição final</p>
-              <p>{dataFinalFormatada}</p>
+              <p>{modalidade.data_inscricao_final}</p>
             </div>
           </div>
           <div className="flex justify-around mt-5 mb-5">
@@ -89,7 +89,7 @@ function Instituicao() {
             </div>
             <div>
               <p>Data de isenção</p>
-              <p>{dataIsencaoFormatada}</p>
+              <p>{modalidade.data_isencao}</p>
             </div>
           </div>
           <h1>Site</h1>
@@ -102,13 +102,13 @@ function Instituicao() {
   );
 
   const provasReturn = prova?.map((prova, index) => {
-    const dataInicioFormatada = dataFormatoBrasileiro(prova.data_prova);
+    // const dataInicioFormatada = dataFormatoBrasileiro(prova.data_prova);
     return (
       <div key={index} className="flex-col text-center justify-center">
         <div className="flex justify-around mb-5">
           <div>
             <p>{prova.nome}</p>
-            <p>{dataInicioFormatada}</p>
+            <p>{prova.data_prova}</p>
           </div>
         </div>
       </div>
@@ -117,7 +117,7 @@ function Instituicao() {
 
   return (
     <div className="flex max-w-screen justify-center items-center">
-      {instituicao && modalidadeDeIngresso && prova ? (
+      {instituicao ? (
         <div className="flex-col max-w-2xl mt-10 justify-center">
           <div className="flex justify-center items-center mb-5">
             <Typography variant="h3" gutterBottom>
@@ -150,9 +150,10 @@ function Instituicao() {
             <Typography variant="h5" gutterBottom>
               Cursos
             </Typography>
-            {cursosEmOrdemAlfabetica?.map((curso, index) => (
+            {/* {cursosEmOrdemAlfabetica?.map((curso, index) => (
               <h1 key={index}>{curso}, </h1>
-            ))}
+            ))} */}
+            {instituicao?.cursos}
           </div>
           <Divider />
           <div className="flex-col justify-center items-center text-center mb-5 mt-5">

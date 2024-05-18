@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useContext, useEffect, useMemo } from "react";
 import { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -13,11 +13,20 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import Link from "next/link";
+import { GlobalContext } from "@/ui/context/GlobalContext";
 
 const pages = ["Página Principal", "Instituições"];
 
 function Header() {
+  const { token, setToken } = useContext(GlobalContext);
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+
+  useEffect(() => {
+    setToken(localStorage.getItem("token"));
+    if (!token) {
+      localStorage.removeItem("token");
+    }
+  }, [token]);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -26,6 +35,13 @@ function Header() {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
+
+  const handleLoginButton = () => {
+    if (token) {
+      localStorage.removeItem("token");
+      setToken(null);
+    }
+  }
 
   return (
     <AppBar position="static">
@@ -152,9 +168,11 @@ function Header() {
           <Box
             sx={{ display: "flex", width: "100px", justifyContent: "center" }}
           >
-            <Button fullWidth color="inherit">
-              Login
-            </Button>
+            <Link href={"/login"}>
+              <Button fullWidth color="inherit" onClick={() => handleLoginButton()}>
+                {token ? "SAIR" : "ENTRAR"}
+              </Button>
+            </Link>
           </Box>
         </Toolbar>
       </Container>

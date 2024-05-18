@@ -74,6 +74,37 @@ async function save(prova: ProvaCreate): Promise<Prova> {
   return provaCreated;
 }
 
+async function update(prova: ProvaUpdate): Promise<Prova> {
+  const currentDate = new Date();
+  currentDate.setHours(currentDate.getHours() - 3);
+  prova.edited_at = currentDate.toISOString();
+
+  const { data, error } = await supabase
+    .from("Prova")
+    .update(prova)
+    .eq("id", prova.id)
+    .select()
+    .single();
+  if (error) {
+    throw error;
+  }
+
+  const parsedData = provaSchema.safeParse(data);
+  if (!parsedData.success) {
+    throw new Error(parsedData.error.errors[0].message);
+  }
+
+  const provaUpdated = parsedData.data;
+  return provaUpdated;
+}
+
+async function deleteById(id: string): Promise<void> {
+  const { error } = await supabase.from("Prova").delete().eq("id", id);
+  if (error) {
+    throw error;
+  }
+}
+
 interface ProvaRepository {
   findAll: () => Promise<Prova[]>;
   findById: (id: string) => Promise<Prova>;
@@ -81,6 +112,8 @@ interface ProvaRepository {
     modalidadeDeIngressoId: string
   ) => Promise<Prova[]>;
   save: (prova: ProvaCreate) => Promise<Prova>;
+  update: (prova: ProvaUpdate) => Promise<Prova>;
+  deleteById: (id: string) => Promise<void>;
 }
 
 export const provaRepository: ProvaRepository = {
@@ -88,4 +121,6 @@ export const provaRepository: ProvaRepository = {
   findById,
   findByModalidadeDeIngressoId,
   save,
+  update,
+  deleteById,
 };
