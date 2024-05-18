@@ -11,7 +11,7 @@ export const modalidadeDeIngressoSchema = schema.object({
   created_at: schema.string(),
   edited_at: schema.string(),
   criterio_id: schema.string().uuid().nullable(),
-  instituicao_id: schema.string().uuid().nullable(),
+  instituicao_id: schema.string().uuid(),
 });
 
 export type ModalidadeDeIngresso = schema.infer<typeof modalidadeDeIngressoSchema>;

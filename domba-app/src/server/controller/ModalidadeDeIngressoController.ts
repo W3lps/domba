@@ -43,7 +43,6 @@ async function registerModalidadeDeIngresso(request: Request) {
   }
 
   infraSecurity.verifyToken(token);
-
   const response = await modalidadeDeIngressoRepository.save(
     modalidadeDeIngresso
   );
