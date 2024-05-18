@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useContext, useEffect, useMemo } from "react";
+import React, { useContext, useEffect } from "react";
 import { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -16,7 +16,6 @@ import Link from "next/link";
 import { GlobalContext } from "@/ui/context/GlobalContext";
 
 import { jwtDecode } from "jwt-decode";
-import { useRouter } from "next/navigation";
 
 const pages = ["Página Principal", "Instituições"];
 
