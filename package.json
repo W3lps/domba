@@ -1,5 +1,9 @@
 {
   "dependencies": {
-    "jsonwebtoken": "^9.0.2"
+    "@next/third-parties": "^14.2.5",
+    "@supabase/supabase-js": "^2.44.4",
+    "jsonwebtoken": "^9.0.2",
+    "next": "^14.2.5",
+    "zod": "^3.23.8"
   }
 }
