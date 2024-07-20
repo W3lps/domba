@@ -2,8 +2,10 @@
   "dependencies": {
     "@next/third-parties": "^14.2.5",
     "@supabase/supabase-js": "^2.44.4",
+    "install": "^0.13.0",
     "jsonwebtoken": "^9.0.2",
     "next": "^14.2.5",
+    "npm": "^10.8.2",
     "zod": "^3.23.8"
   }
 }
